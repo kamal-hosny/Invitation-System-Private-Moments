@@ -5,6 +5,7 @@ const Home = () => {
     <>
     <div>Home</div>
     <div>الصفحة الرئيسه</div>
+    <div>تجربه</div>
     </>
   )
 }
