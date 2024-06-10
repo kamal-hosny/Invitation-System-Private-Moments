@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html{
- font-family: "Readex Pro", sans-serif;
+html {
+    font-family: "Readex Pro", sans-serif;
+    direction: rtl;
 }
