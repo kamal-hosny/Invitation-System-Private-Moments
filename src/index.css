@@ -8,3 +8,66 @@ html {
     font-family: "Readex Pro", sans-serif;
     direction: rtl;
 }
+
+@layer base {
+    :root {
+        --main-color-background: 241, 245, 249;
+        --main-color: 60, 80, 224;
+        --section-color: 255, 255, 255;
+        --section-color-hover: 247, 249, 252;
+        --color-text-1: 27, 35, 56;
+        --color-text-2: 93, 114, 143;
+        /* --color-text-hover: ; */
+        --color-border: 226, 232, 240;
+        --main-navber-background: 28, 36, 52;
+        --main-navber-hover: 36, 48, 63;
+
+        --color-text-1-navber: 221, 228, 238;
+        --color-text-2-navber: 138, 153, 175;
+    }
+}
+
+:root {
+    --main-color-background-css: rgb(241, 245, 249);
+    --main-color-css: rgb(60, 80, 224);
+    --section-color-css: rgb(255, 255, 255);
+    --section-color-hover-css: rgb(247, 249, 252);
+    --color-text-1-css: rgb(27, 35, 56);
+    --color-text-2-css: rgb(93, 114, 143);
+    --color-text-hover-css: ;
+    --color-border-css: rgb(226, 232, 240);
+    --main-navber-background-css: rgb(28, 36, 52);
+    --main-navber-hover-css: rgb(36, 48, 63);
+    
+    --color-text-1-navber-css: rgb(221, 228, 238);
+    --color-text-2-navber-css: rgb(138, 153, 175);
+}
+
+body.dark {
+    --main-color-background-css: rgb(26, 34, 44);
+    --main-color-css: rgb(60, 80, 224);
+    --section-color-css: rgb(36, 48, 63);
+    --section-color-hover-css: rgb(49, 61, 74);
+    --color-text-1-css: rgb(219, 227, 239);
+    --color-text-2-css: rgb(136, 154, 178);
+    --color-text-hover-css: ;
+    --color-border-css: rgb(46, 58, 71);
+    --main-navber-background-css: rgb(36, 48, 63);
+    --main-navber-hover-css: rgb(51, 58, 72);
+
+    --main-color-background: 26, 34, 44;
+    --main-color: 60, 80, 224;
+    --section-color: 36, 48, 63;
+    --section-color-hover: 49, 61, 74;
+    --color-text-1: 219, 227, 239;
+    --color-text-2: 136, 154, 178;
+    /* --color-text-hover-css: ; */
+    --color-border: 46, 58, 71;
+    --main-navber-background: 36, 48, 63;
+    --main-navber-hover: 51, 58, 72;
+}
+
+body {
+    background: var(--main-color-background-css);
+}
+
