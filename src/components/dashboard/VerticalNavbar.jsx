@@ -17,7 +17,7 @@ const VerticalNavbar = () => {
             <div className='flex items-center justify-between'>
                 <div className="logo flex items-center gap-2">
                     <div className="image w-12 h-12">
-                        <img className='w-12 h-12' src="https://i.ibb.co/jz1tS6k/Whats-App-Image-2024-06-10-at-00-00-30-4670a87f-modified-2.png" alt="logo" />
+                        <img className='w-12 h-12' src="/assets/logo/logo.png" alt="logo" />
                     </div>
                     <Link to={"/system/administrator/dashboard"} className='font-semibold text-white'>صفحه الادمن</Link>
                 </div>

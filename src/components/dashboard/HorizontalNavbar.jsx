@@ -9,10 +9,9 @@ const HorizontalNavbar = () => {
 
     return (
         <div className='flex justify-between flex-row-reverse bg-section w-full items-center shadow-sm h-20 py-4 px-6'>
-
             <div className="account flex flex-row-reverse items-center gap-4">
                 <div className="icon overflow-hidden w-10 h-10 rounded-full cursor-pointer" onClick={() => setLogoutDialog(true)}>
-                    <img className='w-10 h-10' src="/src/assets/default-user-icon.jpeg" alt="User Icon" />
+                    <img className='w-10 h-10' src="/assets/default-user-icon.jpeg" alt="User Icon" />
                 </div>
             </div>
 
