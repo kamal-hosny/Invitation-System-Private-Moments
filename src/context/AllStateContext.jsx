@@ -14,7 +14,7 @@ const AllStateProvider = ({ children }) => {
     const [inviteeDialog, setInviteeDialog] = useState(false);
     const [typeInviteeDialog, setTypeInviteeDialog] = useState(null);
 
-    console.log(inviteeDialog, typeInviteeDialog)
+    // console.log(inviteeDialog, typeInviteeDialog)
 
     useEffect(() => {
         const handleResize = () => {

@@ -1,8 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Home from '../components/Home';
 import Login from '../pages/dashboard/Login';
 import Dashboard from '../pages/dashboard/Dashboard';
-import Invitation from '../pages/user-interface/Invitation';
 import '../index.css';
 import Layout from '../components/layout/Layout';
 import { AllStateProvider } from '../context/AllStateContext';

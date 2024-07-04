@@ -7,11 +7,11 @@ import './index.css';
 import App from './routes/AppRouter.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
     <HelmetProvider>
         <App />
     </HelmetProvider>
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
