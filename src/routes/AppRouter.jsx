@@ -8,19 +8,23 @@ import Layout from '../components/layout/Layout';
 import { AllStateProvider } from '../context/AllStateContext';
 import History from '../pages/dashboard/History';
 import Category from '../pages/dashboard/Category';
-
-
+import ErrorPage from '../pages/ErrorPage';
 
 function App() {
     const Routing = createBrowserRouter([
         {
             path: "/",
+            element: <Login />,
+            errorElement: <ErrorPage />,
+        },
+        {
+            path: "system/administrator",
             element: <Layout />,
             children: [
-                { index: true, element: <Home /> },
-                { path: "system/administrator/dashboard", element: <Dashboard /> },
-                { path: "system/administrator/history", element: <History /> },
-                { path: "system/administrator/category/:slug", element: <Category /> },
+                { index: true, element: <Dashboard /> },
+                { path: "dashboard", element: <Dashboard /> },
+                { path: "history", element: <History /> },
+                { path: "category/:slug", element: <Category /> },
             ]
         },
         {
@@ -31,7 +35,7 @@ function App() {
 
     return (
         <AllStateProvider>
-        <RouterProvider router={Routing} />
+            <RouterProvider router={Routing} />
         </AllStateProvider>
     );
 }
