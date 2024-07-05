@@ -7,6 +7,7 @@ import CreateCategoryDialog from '../dashboard/common/CreateCategoryDialog';
 import CreateInvitee from '../dashboard/common/CreateInvitee';
 
 const Layout = () => {
+
   return (
   <>
   <LogoutDialog />

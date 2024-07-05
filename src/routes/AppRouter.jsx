@@ -1,3 +1,4 @@
+import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Login from '../pages/dashboard/Login';
 import Dashboard from '../pages/dashboard/Dashboard';
@@ -16,7 +17,7 @@ function App() {
             errorElement: <ErrorPage />,
         },
         {
-            path: "system/administrator",
+            path: "/system/administrator/",
             element: <Layout />,
             children: [
                 { index: true, element: <Dashboard /> },

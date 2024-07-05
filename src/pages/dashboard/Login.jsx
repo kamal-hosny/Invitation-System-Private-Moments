@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router';
 const Login = () => {
   const { mobileSize } = useContext(AllStateContext)
 
-  return (
+  return (    
     <div className='login relative'>
       <div className='fixed left-0 top-0 z-0 flex justify-between h-screen w-screen'>
         <div className='flex-1 bg-[#fbf9ed] flex items-center justify-end'>

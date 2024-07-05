@@ -12,23 +12,19 @@ const postLoginAuthSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder
-        .addCase(
-            loginAuth.pending,(state, action) => {
+            .addCase(loginAuth.pending, (state) => {
                 state.loading = true;
                 state.error = null;
-            },
-            loginAuth.fulfilled,(state, action) => {
-                state.loading = true;
-                state.records.push(action.payload)
-            },
-            loginAuth.rejected,(state, action) => {
+            })
+            .addCase(loginAuth.fulfilled, (state, action) => {
+                state.loading = false;
+                state.records.push(action.payload);
+            })
+            .addCase(loginAuth.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-            }
-        )
+            });
     }
-})
+});
 
 export const postLoginAuthSliceReducer = postLoginAuthSlice.reducer;
-
-

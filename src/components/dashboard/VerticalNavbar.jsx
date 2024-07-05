@@ -5,11 +5,25 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import HistoryIcon from '@mui/icons-material/History';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AllStateContext } from '../../context/AllStateContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllParty } from '../../store/party/act/actGetAllParty';
 
 const VerticalNavbar = () => {
+    const dispatch = useDispatch();
+    const data = useSelector((state) => state)
+    console.log(data);
+    
+
+    useEffect(()=>{
+        return () => {
+            dispatch(getAllParty())
+        }
+    }, [dispatch])
+
+    
     const { mobileSize, openMenu, changeMenuValue, setLogoutDialog , setCategoryDialog, setTypeCategoryDialog } = useContext(AllStateContext);
 
     return (
@@ -37,9 +51,9 @@ const VerticalNavbar = () => {
                 </ul>
                 <ul>
                     <p className='px-3 py-1 text-text-1-navbar text-sm'>ادارة المناسبات</p>
-                    <li><Link to="system/administrator/category/1" className='flex items-center gap-2 p-3 transition-all hover:bg-navbar-hover hover:text-text-1-navbar'><GroupsIcon /><span>ادارة المناسبه 1</span></Link></li>
-                    <li><Link to="system/administrator/category/2" className='flex items-center gap-2 p-3 transition-all hover:bg-navbar-hover hover:text-text-1-navbar'><GroupsIcon /><span>ادارة المناسبه 2</span></Link></li>
-                    <li><Link to="system/administrator/category/3" className='flex items-center gap-2 p-3 transition-all hover:bg-navbar-hover hover:text-text-1-navbar'><GroupsIcon /> <span>ادارة المناسبه 3</span></Link></li>
+                    <li><Link to="/system/administrator/category/1" className='flex items-center gap-2 p-3 transition-all hover:bg-navbar-hover hover:text-text-1-navbar'><GroupsIcon /><span>ادارة المناسبه 1</span></Link></li>
+                    <li><Link to="/system/administrator/category/2" className='flex items-center gap-2 p-3 transition-all hover:bg-navbar-hover hover:text-text-1-navbar'><GroupsIcon /><span>ادارة المناسبه 2</span></Link></li>
+                    <li><Link to="/system/administrator/category/3" className='flex items-center gap-2 p-3 transition-all hover:bg-navbar-hover hover:text-text-1-navbar'><GroupsIcon /> <span>ادارة المناسبه 3</span></Link></li>
                     <li className='justify-self-end'><button  onClick={() => { setCategoryDialog(true); setTypeCategoryDialog("create"); }}  className='flex cursor-pointer items-center gap-2 p-3 transition-all hover:bg-navbar-hover hover:text-text-1-navbar'><CreateIcon /><span>إنشاء مناسبه</span></button></li>
                 </ul>
                 <ul>
