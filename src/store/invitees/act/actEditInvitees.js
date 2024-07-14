@@ -1,12 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosConfig } from "../../../services/axiosConfig";
 
-
-export const editParty = createAsyncThunk(
-    "party/editParty",
-    async ({id, data}, thunkAPI) => {
+export const editInvite = createAsyncThunk(
+    "invitees/editInvite", 
+    async (data, thunkApi) => {
         try {
-            const response = await axiosConfig.put(`party/${id}`, data, {
+            const response = await axiosConfig.put(`https://kamalapi.onrender.com/invite/${data._id}`, data, {
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
                 }

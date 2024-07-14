@@ -1,58 +1,86 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 
 const AllStateContext = createContext({});
 
 const AllStateProvider = ({ children }) => {
-    const [openMenu, setOpenMenu] = useState(false);
-    const [mobileSize, setMobileSize] = useState(window.innerWidth < 768);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [mobileSize, setMobileSize] = useState(window.innerWidth < 768);
 
-    const [logoutDialog, setLogoutDialog] = useState(false);
-    
-    const [categoryDialog, setCategoryDialog] = useState(false);
-    const [typeCategoryDialog, setTypeCategoryDialog] = useState(null);
+  const [logoutDialog, setLogoutDialog] = useState(false);
 
-    const [inviteeDialog, setInviteeDialog] = useState(false);
-    const [typeInviteeDialog, setTypeInviteeDialog] = useState(null);
+  // فتح و غلط نافذة المناسبة
+  const [categoryDialog, setCategoryDialog] = useState(false);
+  // تحديد نوع النافذة ( انشاء - تعديل )
+  const [typeCategoryDialog, setTypeCategoryDialog] = useState(null);
+  // حذف النافذة
+  const [deleteCategoryDialog, setDeleteCategoryDialog] = useState(false);
+  // نافذه حذف مدعو إليه
+  const [deleteInviteesDialog, setDeleteInviteesDialog] = useState(false);
+  //  ارسال id بتاع invite
 
-    // console.log(inviteeDialog, typeInviteeDialog)
+  const [inviteeDialog, setInviteeDialog] = useState(false);
+  const [typeInviteeDialog, setTypeInviteeDialog] = useState(null);
+  const [inviteID, setInviteID] = useState(null);
 
-    useEffect(() => {
-        const handleResize = () => {
-            setMobileSize(window.innerWidth < 768);
-        };
+  // console.log(inviteeDialog, typeInviteeDialog)
 
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-    const changeMenuValue = () => {
-        setOpenMenu((prevState) => !prevState);
+  useEffect(() => {
+    const handleResize = () => {
+      setMobileSize(window.innerWidth < 768);
     };
 
-    return (
-        <AllStateContext.Provider 
-            value={{ 
-                openMenu, 
-                changeMenuValue, 
-                mobileSize, 
-                logoutDialog, 
-                setLogoutDialog, 
-                categoryDialog, 
-                setCategoryDialog, 
-                typeCategoryDialog, 
-                setTypeCategoryDialog,
-                inviteeDialog,
-                setInviteeDialog,
-                typeInviteeDialog,
-                setTypeInviteeDialog
-            }}
-        >
-            {children}
-        </AllStateContext.Provider>
-    );
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const changeMenuValue = () => {
+    setOpenMenu((prevState) => !prevState);
+  };
+
+  const contextValue = useMemo(
+    () => ({
+      openMenu,
+      changeMenuValue,
+      mobileSize,
+      logoutDialog,
+      setLogoutDialog,
+      categoryDialog,
+      setCategoryDialog,
+      typeCategoryDialog,
+      setTypeCategoryDialog,
+      deleteCategoryDialog,
+      setDeleteCategoryDialog,
+      inviteeDialog,
+      setInviteeDialog,
+      typeInviteeDialog,
+      setTypeInviteeDialog,
+      deleteInviteesDialog,
+      setDeleteInviteesDialog,
+      inviteID,
+      setInviteID,
+    }),
+    [
+      openMenu,
+      mobileSize,
+      logoutDialog,
+      categoryDialog,
+      typeCategoryDialog,
+      deleteCategoryDialog,
+      inviteeDialog,
+      typeInviteeDialog,
+      deleteInviteesDialog,
+      inviteID,
+    ]
+  );
+
+  return (
+    <AllStateContext.Provider value={contextValue}>
+      {children}
+    </AllStateContext.Provider>
+  );
 };
 
 export { AllStateContext, AllStateProvider };

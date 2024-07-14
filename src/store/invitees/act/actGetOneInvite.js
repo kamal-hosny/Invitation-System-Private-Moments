@@ -1,13 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosConfig } from "../../../services/axiosConfig";
 
-export const getOneParty = createAsyncThunk(
-    "party/getOneParty",
+export const getOneInvite = createAsyncThunk(
+    "invitees/getOneInvite",
     async (id, thunkAPI) => {
-        try{
-            const response = await axiosConfig.get(`party/${id}`);
+        try {
+            const response = await axiosConfig.get(`invite/${id}`);
             return response.data;
-        } catch(error) {
+        } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
         }
     }

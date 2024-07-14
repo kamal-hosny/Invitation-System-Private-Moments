@@ -23,7 +23,7 @@ function App() {
                 { index: true, element: <Dashboard /> },
                 { path: "dashboard", element: <Dashboard /> },
                 { path: "history", element: <History /> },
-                { path: "category/:slug", element: <Category /> },
+                { path: "category/:id", element: <Category /> },
             ]
         },
         {
