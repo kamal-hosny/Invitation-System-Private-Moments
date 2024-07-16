@@ -33,7 +33,7 @@ const DeleteCategoryDialog = () => {
             {deleteCategoryDialog && (
                 <div className="fixed flex flex-col border-2 border-border top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[16] justify-center items-center bg-section rounded-lg w-80">
                     <div className="logoutDialog-head border-b-2 border-border w-full p-5 text-lg flex justify-center text-text-1">
-                        هل أنت متاكد من حذف المدعو إليه
+                        هل أنت متاكد من حذف المناسبة
                     </div>
                     <div className="logoutDialog-footer w-full flex justify-start gap-2 p-3">
                         <button

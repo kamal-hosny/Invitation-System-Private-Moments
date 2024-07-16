@@ -115,7 +115,7 @@ const CreateInvitee = () => {
             onClick={() => { setInviteeDialog(false); }}
           ></div>
 
-          <div className={`fixed flex flex-col border-2 border-border top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[16] justify-center items-center bg-section rounded-lg  ${!loading && "w-96"}`}>
+          <div className={`fixed flex flex-col border-border top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[16] justify-center items-center rounded-lg  ${!loading && "w-96 bg-section border-2"}`}>
             {loading ? (
               <Loading loading={loading} error={error} />
             ) : (

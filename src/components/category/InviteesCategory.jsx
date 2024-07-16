@@ -2,20 +2,19 @@ import React, { useContext, useEffect } from 'react';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { AllStateContext } from '../../context/AllStateContext';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllInvitees } from '../../store/invitees/act/actGetAllPartyInvitees';
 
 const InviteesCategory = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state?.allInvitees?.records) || {};
+  const { loading, error, records } = useSelector((state) => state?.allInvitees) || {};
+  const { data } = records || {};
 
-  console.log(data);
+  // console.log(records);
 
   useEffect(() => {
     dispatch(getAllInvitees());
   }, [dispatch]);
-
   const { setInviteeDialog, setTypeInviteeDialog, setInviteID } = useContext(AllStateContext);
 
   const formatTimestamp = (timestamp) => {
@@ -102,11 +101,13 @@ const InviteesCategory = () => {
                 </tr>
               ))
             ) : (
-              <tr>
-                <td colSpan="11" className='border border-border p-2'>
-                  لا يوجد مدعوين
-                </td>
-              </tr>
+              !loading && (
+                <tr>
+                  <td colSpan="11" className='border border-border p-2'>
+                    لا يوجد مدعوين
+                  </td>
+                </tr>
+              )
             )}
           </tbody>
         </table>
