@@ -60,38 +60,35 @@ const CreateInvitee = () => {
     }
   }, [record?.data[0], setValue, typeInviteeDialog]);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const currentTime = Date.now();
+    const inviteData = {
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        address: data.address,
+        age: data.age,
+        time: currentTime,
+        inviteID: inviteID , 
+        party_id: id
+    };
+
     if (typeInviteeDialog === "create") {
-      dispatch(createInvite({
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        address: data.address,
-        age: data.age,
-        time: currentTime,
-        party_id: id
-      })).then(() => {
-        dispatch(getAllInvitees());
-        setInviteeDialog(false);
-        reset();
-      });
+        await dispatch(createInvite(inviteData)).then(() => {
+            dispatch(getAllInvitees());
+            setInviteeDialog(false);
+            reset();
+        });
     } else {
-      dispatch(editInvite({
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        address: data.address,
-        age: data.age,
-        time: currentTime,
-        party_id: id
-      })).then(() => {
-        dispatch(getAllInvitees());
-        setInviteeDialog(false);
-        reset();
-      });
+      console.log(inviteData);
+        await dispatch(editInvite(inviteData)).then(() => {
+            dispatch(getAllInvitees());
+            setInviteeDialog(false);
+            reset();
+        });
     }
-  };
+};
+
 
   const [approvalStatus, setApprovalStatus] = useState('');
   const handleApprovalChange = (event) => {

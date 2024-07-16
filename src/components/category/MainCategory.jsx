@@ -4,20 +4,29 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { AllStateContext } from '../../context/AllStateContext';
 import { getOneParty } from '../../store/party/act/actGetOneParty';
 import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../Loading';
 
 const MainCategory = ({ id }) => {
     const dispatch = useDispatch();
     const { setTypeCategoryDialog, setCategoryDialog, setDeleteCategoryDialog } = useContext(AllStateContext);
 
-    const data = useSelector((state) => state?.allParty?.record?.data?.[0]);
-    // console.log(data);
+    // const data = useSelector((state) => state?.allParty?.record?.data?.[0]);
+    const {loading, error, record} = useSelector((state) => state?.allParty);
+    const data = record?.data[0] 
 
     useEffect(() => {
         dispatch(getOneParty(id));
     }, [dispatch, id]);
 
     return (
-        <div className="category-data bg-section p-5 border-border border-2">
+        <>
+        {loading ? (
+            <div className='flex items-center justify-center' style={{height: "calc(50vh - 60px)"}}>
+            <Loading error={error} loading={loading} />
+            </div>
+        ) : (
+            <>
+             <div className="category-data bg-section p-5 border-border border-2">
             <div className='flex items-start justify-between text-text-1'>
                 <p className='text-lg font-medium pb-5'>{data?.title || 'فرح ام احمد'}</p>
                 <div className='flex gap-4 items-center'>
@@ -53,6 +62,10 @@ const MainCategory = ({ id }) => {
                 
             </div>
         </div>
+            </>
+        )}
+       
+        </>
     );
 }
 

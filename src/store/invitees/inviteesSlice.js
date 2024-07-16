@@ -65,13 +65,17 @@ const getAllInviteesSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
+
             .addCase(editInvite.fulfilled, (state, action) => {
                 state.loading = false;
-                const index = state.records.findIndex(invite => invite.id === action.payload.id)
-                if(index !== -1){
-                    state.records[index] = action.payload
+                if (Array.isArray(state.records)) {
+                    const index = state.records.findIndex(invite => invite.id === action.payload.id);
+                    if (index !== -1) {
+                        state.records[index] = action.payload;
+                    }
                 }
             })
+
             .addCase(editInvite.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
