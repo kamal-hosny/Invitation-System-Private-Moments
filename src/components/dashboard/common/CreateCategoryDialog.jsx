@@ -37,8 +37,9 @@ const CreateCategoryDialog = () => {
     const [eventType, setEventType] = useState("");
 
     const handleChange = (event) => {
-        setEventType(event.target.value);
-        setValue("eventType", event.target.value); // Integrate with React Hook Form
+        const value = event.target.value;
+        setEventType(value);
+        setValue("eventType", value); // Integrate with React Hook Form
     };
 
     const data = useSelector((state) => state?.allParty?.record?.data?.[0]);
@@ -52,6 +53,7 @@ const CreateCategoryDialog = () => {
     useEffect(() => {
         if (typeCategoryDialog === "create") {
             reset();
+            setEventType(""); // Reset eventType when creating a new party
         } else {
             if (data) {
                 setValue("name", data.title);
@@ -67,50 +69,33 @@ const CreateCategoryDialog = () => {
                 setEventType(data.eventType);
             }
         }
-    }, [data, setValue, typeCategoryDialog]);
+    }, [data, setValue, typeCategoryDialog, reset]);
 
     const onSubmit = (data) => {
+        const payload = {
+            title: data.name,
+            place: data.hallName,
+            address: data.address,
+            date: data.date,
+            Groom_name: data.groomName,
+            Bride_name: data.brideName,
+            location: data.linkAddress,
+            eventType: data.eventType,
+            startTime: data.startTime,
+            endTime: data.endTime,
+        };
+
         if (typeCategoryDialog === "create") {
-            dispatch(
-                postParty({
-                    title: data.name,
-                    place: data.hallName,
-                    address: data.address,
-                    date: data.date,
-                    Groom_name: data.groomName,
-                    Bride_name: data.brideName,
-                    location: data.linkAddress,
-                    eventType: data.eventType,
-                    startTime: data.startTime,
-                    endTime: data.endTime,
-                })
-            ).then(() => {
-                dispatch(getAllParty());
+            dispatch(postParty(payload)).then(() => {
                 setCategoryDialog(false);
+                dispatch(getAllParty());
                 reset();
             });
         } else {
-            dispatch(
-                editParty({
-                    id,
-                    data: {
-                        title: data.name,
-                        place: data.hallName,
-                        address: data.address,
-                        date: data.date,
-                        Groom_name: data.groomName,
-                        Bride_name: data.brideName,
-                        location: data.linkAddress,
-                        eventType: data.eventType,
-                        startTime: data.startTime,
-                        endTime: data.endTime,
-                    }
-                })
-            ).then(() => {
+            dispatch(editParty({ id, data: payload })).then(() => {
+                setCategoryDialog(false);
                 dispatch(getAllParty());
                 dispatch(getOneParty(id));
-                
-                setCategoryDialog(false);
                 reset();
             });
         }

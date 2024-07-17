@@ -33,7 +33,8 @@ const VerticalNavbar = () => {
                 </style>
             </Helmet>
 
-            <header className={`${openMenu ? "fixed right-0 top-0 z-10 flex" : mobileSize ? "hidden" : "flex"} v-nav flex-col gap-10 w-[300px]  bg-navbar-bg p-5 text-text-2-navbar`}>
+            <header className={`${openMenu ? "fixed right-0 top-0 z-10 flex h-full" : mobileSize ? "hidden" : "flex relative"} v-nav  flex-col gap-10 w-[300px]  bg-navbar-bg p-5 text-text-2-navbar`}>
+                <span className='absolute w-full -z-10 bg-navbar-bg top-0 left-0 h-screen'></span>
                 <div className='flex items-center justify-between'>
                     <div className="logo flex items-center gap-2">
                         <div className="image w-12 h-12">
