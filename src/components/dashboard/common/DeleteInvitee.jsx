@@ -35,6 +35,7 @@ const DeleteInvitee = () => {
                 هل أنت متاكد من حذف المناسبة
             </div>
             <div className="logoutDialog-footer w-full flex justify-start gap-2 p-3">
+            
                 <button
                     className="bg-[#dc3545] text-white px-3 py-1.5 rounded-sm"
                     onClick={removeCategory}

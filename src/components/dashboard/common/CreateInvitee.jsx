@@ -189,6 +189,7 @@ const CreateInvitee = () => {
 
                     <div className="col-span-2 flex justify-between gap-2 mt-2 items-center">
                       <div className='flex items-center gap-2'>
+                        
                         <button type="submit" className="bg-green-500 text-white px-3 py-2 rounded-sm">
                           {typeInviteeDialog === "create" ? "إنشاء" : "تعديل"}
                         </button>

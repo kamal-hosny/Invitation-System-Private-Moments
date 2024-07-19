@@ -9,6 +9,7 @@ import { postParty } from "../../../store/party/act/actCreateParty";
 import { editParty } from "../../../store/party/act/actEditParty";
 import { getAllParty } from "../../../store/party/act/actGetAllParty";
 import { getOneParty } from "../../../store/party/act/actGetOneParty";
+import Loading from "../../Loading";
 
 const CustomSelect = styled(Select)(({ theme }) => ({
     "& .MuiSelect-select": {
@@ -42,7 +43,11 @@ const CreateCategoryDialog = () => {
         setValue("eventType", value); // Integrate with React Hook Form
     };
 
-    const data = useSelector((state) => state?.allParty?.record?.data?.[0]);
+    // const data = useSelector((state) => state?.allParty?.record?.data?.[0]);
+
+    const { loading, error, record } = useSelector((state) => state.allParty) || {}
+
+    const { data } = record?.[0] || {}
 
     useEffect(() => {
         if (id) {
@@ -294,12 +299,14 @@ const CreateCategoryDialog = () => {
                             </div>
                             <div className="col-span-2 flex justify-between gap-2 mt-2">
                                 <div className="flex items-center gap-2">
+                                <Loading loading={loading} error={error}>
                                     <button
                                         type="submit"
                                         className="bg-green-500 text-white px-3 py-2 rounded-sm"
                                     >
                                         {typeCategoryDialog === "create" ? "إنشاء" : "تعديل"}
                                     </button>
+                                    </Loading>
                                     <button
                                         type="button"
                                         onClick={() => setCategoryDialog(false)}

@@ -5,6 +5,7 @@ import { AllStateContext } from '../../context/AllStateContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllInvitees } from '../../store/invitees/act/actGetAllPartyInvitees';
 import Loading from '../Loading';
+import { useNavigate } from 'react-router-dom';
 
 const InviteesCategory = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,13 @@ const InviteesCategory = () => {
     };
     return date.toLocaleString('ar-EG', options);
   };
+
+  let sendMessage = (number) => {
+    const messageUrl = `https://api.whatsapp.com/send?phone=${number}&text=https%3A%2F%2Fpenguin-ap.netlify.app%2FpostDetails.html%3FpostId%3D6665a973d9be941ac59e0e0c%20hello%20how%20are%20you`;
+    window.location.href = messageUrl;
+  }
+  
+  
 
   return (
     <>
@@ -90,7 +98,7 @@ const InviteesCategory = () => {
                       <span className='bg-gray-200 py-[2px] px-4 rounded-2xl text-gray-600'>-</span>
                     </td>
                     <td className='border border-border p-2'>
-                      <button className='bg-blue-500 text-white py-1 px-3 rounded'>Send</button>
+                      <button className='bg-blue-500 text-white py-1 px-3 rounded' onClick={()=>{sendMessage(x.phone)}} >Send</button>
                     </td>
                     <td className='border border-border p-2'>
                       <div 
